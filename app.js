@@ -393,6 +393,27 @@ function setupEventListeners() {
       startGame();
     }
   });
+
+  // Open About Mainframe modal
+  const aboutNav = document.getElementById('about-nav-link');
+  if (aboutNav) {
+    aboutNav.addEventListener('click', openAboutMainframe);
+  }
+
+  // Close About Mainframe modal
+  const closeMainframe = document.getElementById('close-mainframe');
+  if (closeMainframe) {
+    closeMainframe.addEventListener('click', closeAboutMainframe);
+  }
+
+  // Sidebar tabs dynamic router click
+  const directoryItems = document.querySelectorAll('.directory-item');
+  directoryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const tabId = item.getAttribute('data-tab');
+      switchMainframeTab(tabId);
+    });
+  });
 }
 
 // Toggles sound mute/unmute
@@ -640,4 +661,48 @@ function startLiveTicking() {
     activePlayers = Math.max(1200, activePlayers + variance);
     activePlayersCountLabel.textContent = activePlayers.toLocaleString();
   }, 4000);
+}
+
+// MAINFRAME INFO SYSTEM (ABOUT MODAL) CONTROLLER
+function openAboutMainframe() {
+  const aboutMod = document.getElementById('about-modal');
+  if (aboutMod) {
+    aboutMod.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Lock scrolling
+    synth.playLevelUp(); // futuristic activation buzz
+  }
+}
+
+function closeAboutMainframe() {
+  const aboutMod = document.getElementById('about-modal');
+  if (aboutMod) {
+    aboutMod.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+    synth.playMove();
+  }
+}
+
+function switchMainframeTab(tabId) {
+  // Highlight folder item
+  const directoryItems = document.querySelectorAll('.directory-item');
+  directoryItems.forEach(item => {
+    if (item.getAttribute('data-tab') === tabId) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+
+  // Toggle visible pane
+  const tabContents = document.querySelectorAll('.mainframe-tab-content');
+  tabContents.forEach(content => {
+    if (content.id === tabId) {
+      content.classList.add('active');
+    } else {
+      content.classList.remove('active');
+    }
+  });
+
+  // Sound click
+  synth.playMove();
 }

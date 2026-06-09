@@ -25,7 +25,7 @@
         <li><a href="#home" class="active">Início</a></li>
         <li><a href="#arcade">Fliperama</a></li>
         <li><a href="#leaderboard">Recordes</a></li>
-        <li><a href="#about">Sobre</a></li>
+        <li><a href="javascript:void(0)" id="about-nav-link">Sobre</a></li>
       </ul>
 
       <div class="header-controls">
@@ -242,6 +242,189 @@
         <div class="cabinet-status-display">
           <div class="credit-counter" id="credit-count-label">CREDITS: 00</div>
           <div class="score-display-cabinet">SCORE: <span id="score-val">000000</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAINFRAME INFO SYSTEM (ABOUT MODAL) -->
+  <div class="mainframe-modal" id="about-modal">
+    <button class="close-mainframe-btn" id="close-mainframe" title="Fechar Terminal">×</button>
+    
+    <div class="mainframe-body">
+      <!-- Titlebar -->
+      <div class="mainframe-titlebar">
+        <div class="window-controls">
+          <span class="control-dot close"></span>
+          <span class="control-dot minimize"></span>
+          <span class="control-dot expand"></span>
+        </div>
+        <span class="titlebar-text">MAINFRAME INFO SYSTEM v1.0.4 - ACTIVE // SECURE_SHELL</span>
+        <span class="titlebar-logo"><i class="fa-solid fa-terminal"></i> GRUPO_D://SYS</span>
+      </div>
+
+      <!-- Main Columns -->
+      <div class="mainframe-container">
+        <!-- Directory Tree Sidebar -->
+        <div class="mainframe-sidebar">
+          <div class="directory-title"><i class="fa-solid fa-folder-open"></i> ufpa-ciberseguranca</div>
+          <ul class="directory-list">
+            <li class="directory-item active" data-tab="about-readme">
+              <i class="fa-brands fa-markdown file-icon"></i> readme.md
+            </li>
+            <li class="directory-item" data-tab="about-security">
+              <i class="fa-solid fa-shield-halved file-icon"></i> cibersegurança.md
+            </li>
+            <li class="directory-item" data-tab="about-specs">
+              <i class="fa-solid fa-gears file-icon"></i> especificacoes.md
+            </li>
+            <li class="directory-item" data-tab="about-team">
+              <i class="fa-solid fa-users-gear file-icon"></i> integrantes.md
+            </li>
+          </ul>
+          
+          <div class="system-status">
+            <div class="status-indicator"><span class="pulse-dot"></span> ONLINE</div>
+            <div class="status-details">SYS.PORT: 443<br>IP.RESOLVED: 18.225.212.92</div>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="mainframe-viewport">
+          <!-- TAB 1: README -->
+          <div class="mainframe-tab-content active" id="about-readme">
+            <h2 class="terminal-header">> CAT README.MD</h2>
+            <div class="terminal-banner">
+              <pre>
+  ____    _    __  __ _____   ____  
+ / ___|  / \  |  \/  | ____| |  _ \ 
+| |  _  / _ \ | |\/| |  _|   | | | |
+| |_| |/ ___ \| |  | | |___  | |_| |
+ \____/_/   \_\_|  |_|_____| |____/ 
+              </pre>
+              <div class="banner-subtitle">PLATAFORMA RETRÔ DE JOGOS ONLINE</div>
+            </div>
+            
+            <h3 class="terminal-title">🎓 Contexto Acadêmico</h3>
+            <p class="terminal-p">
+              Este projeto consiste em um trabalho prático desenvolvido pelo <strong>Grupo D</strong> como parte dos requisitos de avaliação da disciplina de desenvolvimento seguro na <strong>Pós-Graduação em Cibersegurança</strong> da <strong>Universidade Federal do Pará (UFPA)</strong>.
+            </p>
+            <p class="terminal-p">
+              O objetivo principal é demonstrar a construção de uma plataforma web interativa (Single Page Application) inspirada em serviços de streaming como o <em>Avantiflix</em>, mas focada em jogos retrô funcionais, aplicando boas práticas de segurança defensiva no front-end.
+            </p>
+
+            <h3 class="terminal-title">🕹️ Sobre a Cabine</h3>
+            <p class="terminal-p">
+              O <strong>GAME D</strong> é construído sob uma forte estética de fliperama dos anos 80 e 90 (Synthwave/Cyberpunk). Ele emula o comportamento visual das telas clássicas com filtros CSS que geram linhas de varredura (scanlines), simulam o vidro abaulado do monitor e sintonizam chiptunes retrô em tempo real gerados via osciladores nativos do áudio web.
+            </p>
+          </div>
+
+          <!-- TAB 2: SECURITY -->
+          <div class="mainframe-tab-content" id="about-security">
+            <h2 class="terminal-header">> CAT CIBERSEGURANÇA.MD</h2>
+            <div class="security-badge-large"><i class="fa-solid fa-shield-halved"></i> CONTROLES DE SEGURANÇA</div>
+            
+            <div class="security-card">
+              <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+              <div class="card-body">
+                <h4>Mitigação de Cross-Site Scripting (XSS)</h4>
+                <p>Nenhuma entrada de dados externa é interpretada diretamente como código. Apelidos no ranking e palavras-chave na busca de jogos são sanitizados utilizando a propriedade nativa <code>textContent</code> do DOM. Tags de script inseridas são tratadas como texto comum, impedindo vulnerabilidades do tipo HTML Injection ou Stored XSS.</p>
+              </div>
+            </div>
+
+            <div class="security-card">
+              <div class="card-icon"><i class="fa-solid fa-lock"></i></div>
+              <div class="card-body">
+                <h4>Encapsulamento de Escopo e Sandbox</h4>
+                <p>Os motores dos jogos (Space Invaders, Blocks, Snake) são inicializados de forma independente utilizando orientação a objetos clássica. Os estados de pontuação e loops de frames estão contidos dentro do escopo léxico das classes de cada jogo, impedindo adulteração direta das variáveis de pontuação a partir do console global do browser.</p>
+              </div>
+            </div>
+
+            <div class="security-card">
+              <div class="card-icon"><i class="fa-solid fa-server"></i></div>
+              <div class="card-body">
+                <h4>Políticas de HTTPS e Cabeçalhos de Resposta (CSP/HSTS)</h4>
+                <p>Configurado Nginx sob certificado TLS forçando conexões HTTPS na porta 443 e redirecionando a porta 80. O servidor entrega cabeçalhos anti-clickjacking (<code>X-Frame-Options: DENY</code>), anti-MIME-sniffing (<code>X-Content-Type-Options: nosniff</code>) e uma rigorosa <code>Content-Security-Policy</code> limitando conexões e fontes de mídias.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: SPECS -->
+          <div class="mainframe-tab-content" id="about-specs">
+            <h2 class="terminal-header">> LSHW -SPECIFICATIONS -TECH_STACK</h2>
+            <h3 class="terminal-title">🛠️ Especificações da Máquina</h3>
+            <div class="specs-grid">
+              <div class="spec-item-box">
+                <div class="spec-icon"><i class="fa-brands fa-html5"></i></div>
+                <div class="spec-info">
+                  <h5>HTML5 Semântico & Canvas</h5>
+                  <p>Renderização de sprites e malhas a 60 FPS através de animações baseadas no ciclo de varredura da GPU.</p>
+                </div>
+              </div>
+
+              <div class="spec-item-box">
+                <div class="spec-icon"><i class="fa-brands fa-css3-alt"></i></div>
+                <div class="spec-info">
+                  <h5>CSS3 Synthwave</h5>
+                  <p>Design responsivo, sombras de neon dinâmicas e camadas emuladoras de monitor CRT de fósforo.</p>
+                </div>
+              </div>
+
+              <div class="spec-item-box">
+                <div class="spec-icon"><i class="fa-brands fa-js"></i></div>
+                <div class="spec-info">
+                  <h5>Web Audio API Synth</h5>
+                  <p>Sintetizador de áudio retro integrado. Cria ondas sonoras quadradas e dente-de-serra sintéticas em tempo real.</p>
+                </div>
+              </div>
+
+              <div class="spec-item-box">
+                <div class="spec-icon"><i class="fa-solid fa-circle-nodes"></i></div>
+                <div class="spec-info">
+                  <h5>Sem Dependências externas</h5>
+                  <p>Segurança reforçada ao evitar frameworks complexos. Código 100% sob auditoria própria.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: TEAM -->
+          <div class="mainframe-tab-content" id="about-team">
+            <h2 class="terminal-header">> WHOAMI --GROUP_D</h2>
+            <h3 class="terminal-title">👥 Integrantes da Equipe</h3>
+            <div class="team-grid-mainframe">
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Arienilce Sacramento Gonçalves
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Clisciano Nascimento Souza
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Flávio Alexandre Souza Nunes
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Jorgyvan Braga Lima
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Józimo Azevedo Botelho
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Osvaldo José Rodrigues Neves
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Thiago Bitar Cruz
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Wallace Pablo Rocha da Cruz
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Vinícius Antônio de Paula Valente
+              </div>
+              <div class="team-member-chip">
+                <span class="member-badge">SYS</span> Josiane Moraes
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
