@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAME D | Plataforma de Jogos Online Retrô</title>
+  <meta name="description" content="Jogue clássicos arcade retrô online grátis na plataforma GAME D. Space Invaders, Blocks, Snake e muito mais diretamente no seu navegador.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="crt-screen">
+
+  <!-- Retrô Scanline CRT Effect Overlay -->
+  <div class="crt-overlay"></div>
+
+  <!-- HEADER / NAVEGAÇÃO -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo-section">
+        <img src="gamed.jpg" alt="GAME D Logo" class="logo-img" onerror="this.src='https://placehold.co/100x100/15182a/ff007f?text=GAME+D'">
+        <div class="logo-text">GAME <span>D</span></div>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Início</a></li>
+        <li><a href="#arcade">Fliperama</a></li>
+        <li><a href="#leaderboard">Recordes</a></li>
+        <li><a href="#about">Sobre</a></li>
+      </ul>
+
+      <div class="header-controls">
+        <button id="sound-btn" class="retro-btn sound-toggle" title="Ligar/Desligar Som">
+          <i class="fa-solid fa-volume-xmark"></i>
+        </button>
+        <button id="quick-play-btn" class="retro-btn cyan-btn">
+          <i class="fa-solid fa-gamepad"></i> Inserir Ficha
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-subtitle">SISTEMA ONLINE ATIVO • CRÉDITO ILIMITADO</div>
+      <h1 class="hero-title">
+        A EXPERIÊNCIA MÁXIMA
+        <span>DO FLIPERAMA RETRÔ</span>
+      </h1>
+      <p class="hero-description">
+        Reviva a era de ouro dos videogames de arcade diretamente no seu navegador. Entre na arena, desafie seus reflexos e conquiste o topo do placar de líderes no GAME D.
+      </p>
+      <div class="hero-ctas">
+        <button class="hero-btn" onclick="scrollToSection('arcade')">
+          <i class="fa-solid fa-play"></i> Jogar Agora
+        </button>
+        <button class="hero-btn secondary-btn" onclick="scrollToSection('leaderboard')">
+          <i class="fa-solid fa-trophy"></i> Ver Recordes
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS PANEL -->
+  <section class="stats-panel">
+    <div class="stat-card">
+      <div class="stat-value" id="active-players-count">1,337</div>
+      <div class="stat-label">Jogadores Online</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">3 JOGOS</div>
+      <div class="stat-label">Disponíveis Grátis</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="total-coins-inserted">84,921</div>
+      <div class="stat-label">Fichas Inseridas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">99.8K</div>
+      <div class="stat-label">Pontuação Máxima</div>
+    </div>
+  </section>
+
+  <!-- MAIN AREA -->
+  <main>
+    <!-- ARCADE SECTION (CATALOG) -->
+    <section id="arcade">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Nossos Jogos <span>ARCADES</span></h2>
+        
+        <div class="search-filter-controls">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="game-search" class="search-input" placeholder="Buscar jogo...">
+          </div>
+          
+          <div class="category-tags">
+            <div class="category-tag active" data-category="all">Todos</div>
+            <div class="category-tag" data-category="retro">Nostalgia</div>
+            <div class="category-tag" data-category="action">Ação</div>
+            <div class="category-tag" data-category="puzzle">Puzzle</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATALOG GRID -->
+      <div class="games-grid" id="games-container">
+        <!-- Game cards will be dynamically rendered here by JS, keeping placeholders out -->
+      </div>
+    </section>
+
+    <!-- INFO AND LEADERBOARD ROW -->
+    <div class="info-row">
+      <!-- LEADERBOARD PANEL -->
+      <section id="leaderboard" class="neon-panel">
+        <h3 class="panel-title">
+          Tabela de Recordes <span>HIGH SCORE</span>
+        </h3>
+        <table class="high-scores-table">
+          <thead>
+            <tr>
+              <th style="width: 10%">POS</th>
+              <th style="width: 45%">PLAYER</th>
+              <th style="width: 25%">JOGO</th>
+              <th style="width: 20%; text-align: right;">PONTOS</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body">
+            <!-- Dynamic Leaderboard Content -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ABOUT PLATFORM / SERVICE -->
+      <section id="about" class="neon-panel pink-panel">
+        <h3 class="panel-title">
+          GAME D <span>SOBRE A MÁQUINA</span>
+        </h3>
+        <p class="about-desc">
+          O GAME D é uma plataforma digital dedicada a resgatar e preservar a jogabilidade pura dos clássicos arcade. Sem instalações complexas, sem cadastros demorados. É só abrir, inserir a ficha e jogar.
+        </p>
+        <p class="about-desc">
+          Utilizando tecnologias modernas como HTML5 Canvas e Web Audio, nós recriamos a física, a estética visual das telas CRT e os efeitos sonoros característicos dos anos 80 e 90.
+        </p>
+        
+        <div class="service-features">
+          <div class="feature-item">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Sem Download</h4>
+              <p>Jogue instantaneamente no computador ou celular diretamente do seu browser.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-keyboard"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Suporte a Teclado & Toque</h4>
+              <p>Controles responsivos configurados para teclado e botões virtuais na tela.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-music"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Áudio Sintetizado</h4>
+              <p>Som retro gerado dinamicamente no seu navegador usando Web Audio API.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- CREATOR SUBMISSION -->
+    <section class="creator-banner">
+      <h3 class="creator-title">Você é Desenvolvedor de <span>Jogos Retrô</span>?</h3>
+      <p class="creator-desc">
+        A GAME D está sempre procurando novos talentos para expandir nossa coleção. Se você tem um jogo feito em Canvas, WebGL ou emuladores JS, envie para nós!
+      </p>
+      <button class="retro-btn cyan-btn" onclick="alert('Funcionalidade de upload de jogos estará disponível na próxima atualização! Envie para dev@gamed.com')">
+        <i class="fa-solid fa-upload"></i> Submeter Meu Jogo
+      </button>
+    </section>
+  </main>
+
+  <!-- VIRTUAL ARCADE CABINET (MODAL SCREEN CONTROLLER) -->
+  <div class="cabinet-modal" id="game-modal">
+    <button class="close-cabinet-btn" id="close-cabinet" title="Sair do Fliperama">×</button>
+    
+    <div class="cabinet-body">
+      <!-- Top Neon Marquee -->
+      <div class="cabinet-marquee">
+        <span class="marquee-text" id="cabinet-game-title">FLIPERAMA</span>
+        <span class="marquee-logo"><i class="fa-solid fa-skull"></i> GAME D</span>
+      </div>
+
+      <!-- CRT Bezel and Canvas Screen -->
+      <div class="cabinet-screen-bezel">
+        <div class="cabinet-screen-wrap">
+          <!-- Game Canvas -->
+          <canvas id="game-canvas" class="cabinet-canvas" width="640" height="480"></canvas>
+
+          <!-- Insert Coin / Start UI Screen overlay -->
+          <div class="screen-overlay-ui" id="screen-overlay">
+            <h2 class="overlay-game-title" id="overlay-title">NOME DO JOGO</h2>
+            
+            <button class="coin-prompt" id="insert-coin-btn">
+              <i class="fa-solid fa-circle-dollar-to-slot"></i> INSERIR FICHA
+            </button>
+            
+            <div class="controls-hint" id="game-controls-instructions">
+              Controles: Mova com <span>← →</span> e Atire com <span>ESPAÇO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical Control Panel -->
+      <div class="cabinet-panel">
+        <!-- Simulated Joystick -->
+        <div class="joystick-area">
+          <div class="retro-joystick-wrap">
+            <div class="joystick-ball" id="joystick-handle"></div>
+          </div>
+          <span style="font-family: var(--font-pixel); font-size: 8px; color: var(--text-muted); letter-spacing: 1px;">CONTROLE ANALÓGICO</span>
+        </div>
+
+        <!-- Simulated Buttons -->
+        <div class="cabinet-buttons">
+          <div class="arcade-btn btn-a" id="action-btn-a"><span>ATIRAR</span></div>
+          <div class="arcade-btn btn-b" id="action-btn-b"><span>PULAR</span></div>
+          <div class="arcade-btn btn-c" id="action-btn-c"><span>START</span></div>
+        </div>
+
+        <!-- Cabinets Status Readouts -->
+        <div class="cabinet-status-display">
+          <div class="credit-counter" id="credit-count-label">CREDITS: 00</div>
+          <div class="score-display-cabinet">SCORE: <span id="score-val">000000</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">GAME <span>D</span></div>
+    <ul class="footer-links">
+      <li><a href="#home">Início</a></li>
+      <li><a href="#arcade">Jogos</a></li>
+      <li><a href="#leaderboard">Highscores</a></li>
+      <li><a href="mailto:contato@gamed.com">Parcerias</a></li>
+    </ul>
+    
+    <div class="social-icons">
+      <a href="#" class="social-icon" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" class="social-icon" title="Discord"><i class="fa-brands fa-discord"></i></a>
+      <a href="#" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+    </div>
+
+    <div class="copyright">
+      &copy; 2026 GAME D ENTERTAINMENT INC. TODOS OS DIREITOS RESERVADOS.<br>
+      DESENVOLVIDO COM PAIXÃO PELOS PIXELS DO PASSADO.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="games.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
